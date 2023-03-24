@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">AndroidERestaurant</string>
+    <string name="home_title">Viens ripaillez</string>
+    <string name="button_entree">Entree</string>
+    <string name="button_plat">Plat</string>
+    <string name="button_dessert">Dessert</string>
+    <string name="text_entree">Entrées</string>
+    <string name="text_plat">Plat</string>
+    <string name="text_dessert">Dessert</string>
+    <string name="text_dishName">Plat 1</string>
+    <string-array name="dishes">
+        <item>Merci</item>
+        <item>Trouille</item>
+        <item>Six</item>
+        <item>Tronc</item>
+        <item>Merci</item>
+        <item>Garet</item>
+        <item>Dessert bien</item>
+        <item>Dessert nul</item>
+
+    </string-array>
+</resources>
