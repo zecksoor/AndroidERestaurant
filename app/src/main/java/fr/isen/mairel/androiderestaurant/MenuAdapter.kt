@@ -27,7 +27,16 @@ class MenuAdapter(private val dishes: ArrayList<String>) :  //val onDishClickLis
         val dish = dishes[position]
         holder.dishName.text = dish
 
+        holder.itemView.setOnClickListener{
+          //  onDishClickListener(dish)
+        }
 
+
+    }
+
+    fun updateDishes(dishesFromAPI: ArrayList<String>){
+        //dishes = dishesFromAPI
+        notifyDataSetChanged()
     }
 
 

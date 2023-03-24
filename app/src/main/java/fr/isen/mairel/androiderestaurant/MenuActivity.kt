@@ -11,6 +11,8 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.Volley
+import com.google.gson.Gson
+import fr.isen.mairel.androidrestaurant.model.DataResul
 
 class MenuActivity : AppCompatActivity() {
 
@@ -52,9 +54,14 @@ class MenuActivity : AppCompatActivity() {
                 // Traitement de la réponse JSON
 
                 Log.d("MenuActivity", "ça marche : $response" )
-                val data = Gson().fromJson(response.tostring(), DataResult::class.java)
-                val dishes = data.data[0].firstOrNull {it.namefr == categoryTitle }?.items?.map { it.nameFr ?: "" }.toList() as ArrayList
+                val data = Gson().fromJson(response.toString(), DataResul::class.java)
+                val dishes = data.data[0].firstOrNull {it.namefr == imageTitre }?.items?.map { it.nameFr ?: "" }.toList() as ArrayList
                 adapter.updateDishes(dishes)
+
+                val data = Gson().fromJson(response.toString(), DataResult::class.java)
+                val dishes = data.data.firstOrNull{it.nameFr == categoryTitle}?.items?.map{it.nameFr ?: ""}?.toList() as ArrayList //filtrer par categorie ici (a faire)
+                (binding.menuRecyclerView.adapter as MenuAdapter).updateDishes(dishes)
+
             },
             { error ->
                 // Traitement de l'erreur
