@@ -27,7 +27,7 @@ class HomeActivity : AppCompatActivity() {
 
 
 
-        binding.textEntree.setOnClickListener{
+        binding.textEntree.setOnClickListener {
             // Code pour créer une nouvelle page ou activité
             Log.d("MainActivity", "Vous avez cliquer sur le bouton entree")
             /**
@@ -35,9 +35,10 @@ class HomeActivity : AppCompatActivity() {
             val intent = Intent(this, MenuActivity::class.java)
             intent.putExtra("category", getString(R.string.text_entree))  //text_entre dans code activity_home.xml
             startActivity(intent)
-            */
+             */
 
             val intent = Intent(this, MenuActivity::class.java)
+            intent.putExtra("menu", "Entrées")//faire passer en parametre
             startActivity(intent)
         }
 
@@ -46,19 +47,28 @@ class HomeActivity : AppCompatActivity() {
         binding.textPlat.setOnClickListener{
             // Code pour créer une nouvelle page ou activité
             val intent = Intent(this, MenuActivity::class.java)
+            intent.putExtra("menu", "Plats")//faire passer en parametre
             startActivity(intent)
+            //Toast.makeText(this, "Go Plat",Toa)
         }
 
-        val textDessert = findViewById<TextView>(R.id.textDessert)
-        textDessert.setOnClickListener{
-            // Code pour créer une nouvelle page ou activité
+        //val textDessert = findViewById<TextView>(R.id.textDessert)
+        //textDessert.setOnClickListener{
+        // Code pour créer une nouvelle page ou activité
+        //  val intent = Intent(this, MenuActivity::class.java)
+        //   startActivity(intent)
+        // }
+
+        val dessertsButton = findViewById<TextView>(R.id.textDessert)
+        dessertsButton.setOnClickListener {
+            Toast.makeText(this, "Liste Desserts", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, MenuActivity::class.java)
+            intent.putExtra("menu", "Desserts")//faire passer en parametre
             startActivity(intent)
+
+
+
         }
-
-
-
-
     }
 
 
