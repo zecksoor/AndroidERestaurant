@@ -18,6 +18,8 @@ class MenuActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMenuBinding  // Le prof a appeler Category a la place de Menu
 
+
+    private lateinit var categoryTitle: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMenuBinding.inflate(layoutInflater)
@@ -26,6 +28,8 @@ class MenuActivity : AppCompatActivity() {
         val dishes = resources.getStringArray(R.array.dishes).toList() as ArrayList // Dishes = plats en français
         binding.menuRecyclerView.layoutManager = LinearLayoutManager(this)  // Tout en linéaire
         binding.menuRecyclerView.adapter = MenuAdapter(dishes)
+
+        categoryTitle = intent.getStringExtra("menu").toString()
         //{
          //   val intent = Intent(this,DetailActivity::class.java)
         //    intent.putExtra("dish",it)
@@ -55,12 +59,15 @@ class MenuActivity : AppCompatActivity() {
 
                 Log.d("MenuActivity", "ça marche : $response" )
                 val data = Gson().fromJson(response.toString(), DataResul::class.java)
-                val dishes = data.data[0].firstOrNull {it.namefr == imageTitre }?.items?.map { it.nameFr ?: "" }.toList() as ArrayList
-                adapter.updateDishes(dishes)
+                val dishes = data.data.firstOrNull {
 
-                val data = Gson().fromJson(response.toString(), DataResult::class.java)
-                val dishes = data.data.firstOrNull{it.nameFr == categoryTitle}?.items?.map{it.nameFr ?: ""}?.toList() as ArrayList //filtrer par categorie ici (a faire)
+                    it.nameFr == categoryTitle
+                }?.items?.map { it.nameFr ?: "" }?.toList() as ArrayList
                 (binding.menuRecyclerView.adapter as MenuAdapter).updateDishes(dishes)
+
+                //val data = Gson().fromJson(response.toString(), DataResult::class.java)
+               // val dishes = data.data.firstOrNull{it.nameFr == categoryTitle}?.items?.map{it.nameFr ?: ""}?.toList() as ArrayList //filtrer par categorie ici (a faire)
+               // (binding.menuRecyclerView.adapter as MenuAdapter).updateDishes(dishes)
 
             },
             { error ->

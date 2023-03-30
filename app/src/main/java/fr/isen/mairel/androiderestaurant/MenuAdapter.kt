@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import android.content.Intent
 import androidx.core.content.ContextCompat.startActivity
 
-class MenuAdapter(private val dishes: ArrayList<String>) :  //val onDishClickListener: () -> Unit)
+class MenuAdapter(private var dishes: ArrayList<String>) :  //val onDishClickListener: () -> Unit)
     RecyclerView.Adapter<MenuAdapter.LunchViewHolder>() {  //LunchViewHolder remplace recyclerView
 
     class LunchViewHolder(view: View) : RecyclerView.ViewHolder(view){
@@ -35,7 +35,7 @@ class MenuAdapter(private val dishes: ArrayList<String>) :  //val onDishClickLis
     }
 
     fun updateDishes(dishesFromAPI: ArrayList<String>){
-        //dishes = dishesFromAPI
+        dishes = dishesFromAPI
         notifyDataSetChanged()
     }
 
