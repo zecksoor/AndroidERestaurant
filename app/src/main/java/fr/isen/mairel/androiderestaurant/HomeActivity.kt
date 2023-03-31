@@ -12,7 +12,7 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import fr.isen.mairel.androiderestaurant.databinding.ActivityHomeBinding
-
+ 
 
 class HomeActivity : AppCompatActivity() {
 
